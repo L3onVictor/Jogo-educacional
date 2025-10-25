@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo dos números</title>
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./css/modal.css">
+</head>
+
+<body>
+    <main class="content">
+
+        <h1>Jogo dos números</h1>
+
+        <menu class="menu-inicio">
+            <a href="./jogar/jogo.html"><button a>Jogar</button></a>
+            <button onclick="abrirModal('modalConfig')">Configurações</button>
+            <button onclick="abrirModal('modalSobre')">Sobre</button>
+        </menu>
+
+        <div id="modalSobre" class="modal" style="display: block;">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModal('modalSobre')">&times;</span>
+                <h2>Sobre o Projeto</h2>
+                <p>Este é um jogo educativo feito em HTML, CSS e JS.</p>
+            </div>
+        </div>
+
+        <div id="modalConfig" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="fecharModal('modalConfig')">&times;</span>
+                <h2>Configurações</h2>
+                <p>Aqui você pode ajustar o som, o tema e outras opções.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Feito por <strong><a href="https://github.com/L3onVictor">Leonardo Oliveira.</a></strong></p>
+    </footer>
+
+    <script src="./js/modal.js"></script>
+</body>
+
+</html>
