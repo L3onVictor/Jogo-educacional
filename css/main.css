@@ -5,6 +5,12 @@
     font-family: Arial, sans-serif;
 }
 
+main{
+    margin-top: 200px;
+    align-items: center;
+    
+}
+
 h1{
     text-align: center;
     margin-top: 50px;
@@ -20,6 +26,7 @@ menu{
 
 button{
     padding: 10px 20px;
+    width: 200px;
     font-size: 18px;
     cursor: pointer;
     border: none;
@@ -55,4 +62,6 @@ footer{
     margin-top: 50px;
     font-size: 14px;
     color: #555;
+    align-items: bottom;
+    justify-content: bottom;
 }
