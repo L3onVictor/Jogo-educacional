@@ -47,3 +47,23 @@ body {
     cursor: not-allowed;
     opacity: 0.8;
 }
+
+
+/* Barra de vida */
+#vida {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.coracao{
+    width: 25px;
+    height: 25px;
+}
+
+.perdida {
+  opacity: 0.3;
+  filter: grayscale(100%);
+  transform: scale(0.8);
+}
