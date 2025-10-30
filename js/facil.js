@@ -1,17 +1,36 @@
 let respostaCorreta;
 
 function novaConta() {
-  const n1 = Math.floor(Math.random() * 10);
-  const n2 = Math.floor(Math.random() * 10);
-  respostaCorreta = n1 + n2;
+  let n1 = Math.floor(Math.random() * 10);
+  let n2 = Math.floor(Math.random() * 10);
 
-  document.getElementById("conta").textContent = `${n1} + ${n2} = ?`;
+  const operacao = ["+", "-"][Math.floor(Math.random() * 2)];
 
-  const opcoes = [
-    respostaCorreta,
-    respostaCorreta + 1,
-    respostaCorreta - 1
-  ].sort(() => Math.random() - 0.5);
+  if (operacao === "+") {
+    respostaCorreta = n1 + n2;
+  } else {
+    if (n1 < n2) {
+      [n1, n2] = [n2, n1];
+    }
+      respostaCorreta = n1 - n2;
+    
+  }
+
+  document.getElementById("conta").textContent = `${n1} ${operacao} ${n2} = ?`;
+
+  const opcoes = []
+  opcoes.push(respostaCorreta);
+
+  while (opcoes.length < 4) {
+    let falso = respostaCorreta + Math.floor(Math.random() * 7) - 3;
+
+    if (falso < 0) falso = 0;
+
+    if (!opcoes.includes(falso)) {
+      opcoes.push(falso);
+    }
+  }
+  opcoes.sort(() => Math.random() - 0.5);
 
   const div = document.getElementById("opcoes");
   div.innerHTML = "";
@@ -30,21 +49,20 @@ function novaConta() {
 }
 
 function verificar(valor, botao) {
-
+  const allButtons = document.querySelectorAll('#opcoes button');
+  allButtons.forEach(btn => btn.disabled = true);
 
   if (valor === respostaCorreta) {
     botao.style.backgroundColor = "#4CAF50";
-    
     setTimeout(novaConta, 1000);
-    botao.disabled = true;
-    
+
+
   } else {
     botao.style.backgroundColor = "#f44336";
-    
-    perderVida();
-    
-    setTimeout(novaConta, 1000);
     botao.disabled = true;
+    perderVida();
+
+    setTimeout(novaConta, 1000);
   }
 }
 
@@ -59,7 +77,7 @@ function perderVida() {
 
     if (vidas <= 0) {
       setTimeout(() => {
-        alert("Bicho burro do carai kkkkkkkkkkkkkjjjjjjjkkkkkj");
+        alert("Suas vidad acabaram! Reiniciando o jogo.");
         reiniciarJogo();
       }, 500);
     }
