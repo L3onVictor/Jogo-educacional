@@ -1,22 +1,41 @@
 let respostaCorreta;
+let resultado;
 
 function novaConta() {
-  let n1 = Math.floor(Math.random() * 10);
-  let n2 = Math.floor(Math.random() * 10);
+  let n1 = Math.floor(Math.random() * 16);
+  let n2 = Math.floor(Math.random() * 16);
 
   const operacao = ["+", "-"][Math.floor(Math.random() * 2)];
 
   if (operacao === "+") {
-    respostaCorreta = n1 + n2;
+    resultado = n1 + n2;
   } else {
     if (n1 < n2) {
       [n1, n2] = [n2, n1];
     }
-      respostaCorreta = n1 - n2;
-    
+    resultado = n1 - n2;
   }
 
-  document.getElementById("conta").textContent = `${n1} ${operacao} ${n2} = ?`;
+  let texto = "";
+  let indefinido = Math.floor(Math.random() * 4);
+
+  if (indefinido < 1) {
+    respostaCorreta = n1;
+    texto = `? ${operacao} ${n2} = ${resultado}`;
+
+  } else if (indefinido < 2) {
+    respostaCorreta = n2;
+    texto = `${n1} ${operacao} ? = ${resultado}`;
+
+  } else {
+    respostaCorreta = resultado;
+    texto = `${n1} ${operacao} ${n2} = ?`;
+  }
+
+  document.getElementById("conta").textContent = texto;
+
+
+  //document.getElementById("conta").textContent = `${n1} ${operacao} ${n2} = ?`;
 
   const opcoes = []
   opcoes.push(respostaCorreta);
@@ -49,11 +68,19 @@ function novaConta() {
 }
 
 function verificar(valor, botao) {
-  const allButtons = document.querySelectorAll('#opcoes button');
-  allButtons.forEach(btn => btn.disabled = true);
 
   if (valor === respostaCorreta) {
+
+    const allButtons = document.querySelectorAll('#opcoes button');
+    allButtons.forEach(btn => btn.disabled = true);
+    score++;
+    pontuacao()
     botao.style.backgroundColor = "#4CAF50";
+
+    const conta = document.getElementById("conta");
+    conta.textContent = conta.textContent.replace("?", respostaCorreta);
+
+
     setTimeout(novaConta, 1000);
 
 
@@ -62,11 +89,11 @@ function verificar(valor, botao) {
     botao.disabled = true;
     perderVida();
 
-    setTimeout(novaConta, 1000);
   }
 }
 
 let vidas = 3;
+let score = 0;
 
 function perderVida() {
   const coracoes = document.querySelectorAll(".coracao:not(.perdida)");
@@ -84,8 +111,19 @@ function perderVida() {
   }
 }
 
+function pontuacao() {
+  document.getElementById("score").textContent = `Pontuação: ${score}`;
+
+  if (score % 5 == 0 && score != 0) {
+    confirm("Parabéns! Você alcançou " + score + " pontos! Deseja continuar jogando?");
+
+  }
+}
+
 function reiniciarJogo() {
   vidas = 3;
+  score = 0;
+  pontuacao();
   const coracoes = document.querySelectorAll(".coracao");
   coracoes.forEach(coracao => coracao.classList.remove("perdida"));
   novaConta();
