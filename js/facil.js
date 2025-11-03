@@ -2,8 +2,8 @@ let respostaCorreta;
 let resultado;
 
 function novaConta() {
-  let n1 = Math.floor(Math.random() * 16);
-  let n2 = Math.floor(Math.random() * 16);
+  let n1 = Math.floor(Math.random() * 11);
+  let n2 = Math.floor(Math.random() * 11);
 
   const operacao = ["+", "-"][Math.floor(Math.random() * 2)];
 
@@ -92,7 +92,7 @@ function verificar(valor, botao) {
   }
 }
 
-let vidas = 3;
+let vidas = 5;
 let score = 0;
 
 function perderVida() {
@@ -114,7 +114,7 @@ function perderVida() {
 function pontuacao() {
   document.getElementById("score").textContent = `Pontuação: ${score}`;
 
-  if (score % 5 == 0 && score != 0) {
+  if (score % 10 == 0 && score != 0) {
     confirm("Parabéns! Você alcançou " + score + " pontos! Deseja continuar jogando?");
 
   }
