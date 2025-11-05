@@ -2,8 +2,8 @@ let respostaCorreta;
 let resultado;
 
 function novaConta() {
-    let n1 = Math.floor(Math.random() * 26);
-    let n2 = Math.floor(Math.random() * 26);
+    let n1 = Math.floor(Math.random() * 51);
+    let n2 = Math.floor(Math.random() * 51);
 
     const operacao = ["+", "-", "*", "/"][Math.floor(Math.random() * 4)];
 
@@ -19,8 +19,8 @@ function novaConta() {
         resultado = n1 * n2;
     }
     else {
-        n2 = Math.floor(Math.random() * 10) + 1;
-        resultado = Math.floor(Math.random() * Math.floor(50 / n2)) + 1;
+        n2 = Math.floor(Math.random() * 20) + 1;
+        resultado = Math.floor(Math.random() * Math.floor(80 / n2)) + 1;
 
         n1 = n2 * resultado;
     }
@@ -46,7 +46,7 @@ function novaConta() {
     const opcoes = []
     opcoes.push(respostaCorreta);
 
-    while (opcoes.length < 4) {
+    while (opcoes.length < 5) {
         let falso = respostaCorreta + Math.floor(Math.random() * 7) - 3;
 
         if (!opcoes.includes(falso)) {
