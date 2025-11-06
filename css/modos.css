@@ -19,6 +19,36 @@ body {
     background-color: #f4f4f4;
 }
 
+#topbar{
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+}
+
+#voltar{
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+#voltar:hover{
+    background: #eee;
+}
+
+#score p{
+    font-weight: 600;
+    color: #333;
+}
+
 #conta {
     font-size: 2.5rem;
     margin-bottom: 30px;

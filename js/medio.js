@@ -1,6 +1,9 @@
 let respostaCorreta;
 let resultado;
 
+const audioCerto = new Audio("../sound/certo.mp3");
+const audioErrado = new Audio('../sound/errado.mp3');
+
 function novaConta() {
     let n1 = Math.floor(Math.random() * 26);
     let n2 = Math.floor(Math.random() * 26);
@@ -74,7 +77,9 @@ function novaConta() {
 function verificar(valor, botao) {
 
     if (valor === respostaCorreta) {
-
+        audioCerto.currentTime = 0;
+        audioCerto.volume = 0.5;
+        audioCerto.play();
         const allButtons = document.querySelectorAll('#opcoes button');
         allButtons.forEach(btn => btn.disabled = true);
         score++;
@@ -89,6 +94,9 @@ function verificar(valor, botao) {
 
 
     } else {
+        audioErrado.currentTime = 0;
+        audioErrado.volume = 0.5;
+        audioErrado.play();
         botao.style.backgroundColor = "#f44336";
         botao.disabled = true;
         perderVida();
@@ -118,9 +126,11 @@ function perderVida() {
 function pontuacao() {
     document.getElementById("score").textContent = `Pontuação: ${score}`;
 
-    if (score % 10 == 0 && score != 0) {
-        confirm("Parabéns! Você alcançou " + score + " pontos! Deseja continuar jogando?");
-
+    if (score % 15 == 0 && score != 0) {
+        const dificuldade = confirm("Parabéns! Você alcançou " + score + " pontos!\nDeseja aumentar a dificuldade para DIFÍCIL?");
+        if  (dificuldade) {
+            window.location.href = 'dificil.html';
+        }
     }
 }
 
@@ -133,3 +143,10 @@ function reiniciarJogo() {
     novaConta();
 }
 novaConta();
+
+function voltarMenu() {
+    const ok = confirm('Deseja voltar ao menu? Seu progresso será perdido.');
+    if (ok) {
+        window.location.href = '../index.html';
+    }
+}

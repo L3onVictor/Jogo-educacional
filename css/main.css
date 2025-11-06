@@ -24,6 +24,22 @@ menu{
     gap: 15px;
 }
 
+/* imagem de background */
+.background{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; 
+    opacity: 0.95;
+    filter: brightness(0.95) saturate(1.05);
+}
+
+.content{
+    position: relative;
+    z-index: 1;
+}
 button{
     padding: 10px 20px;
     width: 200px;
@@ -56,7 +72,32 @@ button:hover{
 #dificil:hover{
     background-color: #c82b1c;
 }
-
+#topbar{
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 10px;
+}
+#voltar{
+    background: transparent;
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    width: 100px;
+    height: 35px;
+    cursor: pointer;
+    color: #555;
+    text-align: center;
+}
+#voltar:hover{
+    background: #eee;
+}
 footer{
     text-align: center;
     margin-top: 50px;

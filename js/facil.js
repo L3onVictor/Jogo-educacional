@@ -1,6 +1,9 @@
 let respostaCorreta;
 let resultado;
 
+const audioCerto = new Audio("../sound/certo.mp3");
+const audioErrado = new Audio('../sound/errado.mp3');
+
 function novaConta() {
   let n1 = Math.floor(Math.random() * 11);
   let n2 = Math.floor(Math.random() * 11);
@@ -70,6 +73,9 @@ function novaConta() {
 function verificar(valor, botao) {
 
   if (valor === respostaCorreta) {
+    audioCerto.currentTime = 0;
+    audioCerto.volume = 0.5;
+    audioCerto.play();
 
     const allButtons = document.querySelectorAll('#opcoes button');
     allButtons.forEach(btn => btn.disabled = true);
@@ -85,6 +91,9 @@ function verificar(valor, botao) {
 
 
   } else {
+    audioErrado.currentTime = 0; 
+    audioErrado.volume = 0.5;
+    audioErrado.play();
     botao.style.backgroundColor = "#f44336";
     botao.disabled = true;
     perderVida();
@@ -104,7 +113,7 @@ function perderVida() {
 
     if (vidas <= 0) {
       setTimeout(() => {
-        alert("Suas vidad acabaram! Reiniciando o jogo.");
+        alert("Suas vidas acabaram! Reiniciando o jogo.");
         reiniciarJogo();
       }, 500);
     }
@@ -115,17 +124,25 @@ function pontuacao() {
   document.getElementById("score").textContent = `Pontuação: ${score}`;
 
   if (score % 10 == 0 && score != 0) {
-    confirm("Parabéns! Você alcançou " + score + " pontos! Deseja continuar jogando?");
-
+    const dificuldade = confirm("Parabéns! Você alcançou " + score + " pontos!\nDeseja aumentar a dificuldade para MÉDIO?");
+    if (dificuldade) {
+      window.location.href = 'medio.html';
+    }
   }
 }
 
 function reiniciarJogo() {
-  vidas = 3;
+  vidas = 5;
   score = 0;
   pontuacao();
   const coracoes = document.querySelectorAll(".coracao");
   coracoes.forEach(coracao => coracao.classList.remove("perdida"));
   novaConta();
+}
+function voltarMenu() {
+  const ok = confirm('Deseja voltar ao menu? Seu progresso será perdido.');
+  if (ok) {
+    window.location.href = '../index.html';
+  }
 }
 novaConta();
