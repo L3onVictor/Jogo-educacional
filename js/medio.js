@@ -67,8 +67,8 @@ function novaConta() {
         div.appendChild(btn);
     });
 
-    const allButtons = document.querySelectorAll('#opcoes button');
-    allButtons.forEach(btn => {
+    const botoes = document.querySelectorAll('#opcoes button');
+    botoes.forEach(btn => {
         btn.style.backgroundColor = '';
         btn.disabled = false;
     });
@@ -80,8 +80,8 @@ function verificar(valor, botao) {
         audioCerto.currentTime = 0;
         audioCerto.volume = 0.5;
         audioCerto.play();
-        const allButtons = document.querySelectorAll('#opcoes button');
-        allButtons.forEach(btn => btn.disabled = true);
+        const botoes = document.querySelectorAll('#opcoes button');
+        botoes.forEach(btn => btn.disabled = true);
         score++;
         pontuacao()
         botao.style.backgroundColor = "#4CAF50";
